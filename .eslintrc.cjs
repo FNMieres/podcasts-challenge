@@ -20,5 +20,6 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-absolute-path": "off",
+    "import/prefer-default-export": "off",
   },
 };
