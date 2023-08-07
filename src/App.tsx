@@ -1,34 +1,31 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ItunesResponse } from "./types/ItunesResponse";
+import { Contents, Entry } from "./types/Entry";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [podcasts, setPodcasts] = useState<Entry[] | null>(null);
+
+  useEffect(() => {
+    axios
+      .get<ItunesResponse>(
+        `https://api.allorigins.win/get?url=${encodeURIComponent(
+          "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json",
+        )}`,
+      )
+      .then((response) => {
+        const data: Contents = JSON.parse(response.data.contents);
+        setPodcasts(data.feed.entry);
+      });
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    podcasts &&
+    podcasts.length > 0 &&
+    podcasts.map((podcast: Entry) => (
+      <div key={podcast.id.attributes["im:id"]}>{podcast.title.label}</div>
+    ))
   );
 }
 
