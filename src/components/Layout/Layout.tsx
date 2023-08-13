@@ -1,13 +1,14 @@
-import Box from "@mui/material/Box";
 import { ReactNode } from "react";
+import Box from "@mui/material/Box";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 
 interface LayoutProps {
-  children: ReactNode;
+  isLoading?: boolean;
+  children?: ReactNode;
 }
 
-function Layout({ children }: LayoutProps) {
+function Layout({ isLoading = false, children }: LayoutProps) {
   return (
     <Box
       sx={{
@@ -16,7 +17,7 @@ function Layout({ children }: LayoutProps) {
         minHeight: "100vh",
       }}
     >
-      <Header />
+      <Header isLoading={isLoading} />
       <main>{children}</main>
       <Footer />
     </Box>
