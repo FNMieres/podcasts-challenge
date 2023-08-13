@@ -3,17 +3,19 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
-import { Entry } from "../../../types/Contents";
 
 interface PodcastCardProps {
-  data: Entry;
+  id: string;
+  image: string;
+  title: string;
+  author: string;
   onClick: (id: string) => void;
 }
 
-function PodcastCard({ data, onClick }: PodcastCardProps) {
+function PodcastCard({ id, image, title, author, onClick }: PodcastCardProps) {
   return (
     <ButtonBase
-      onClick={() => onClick(data.id.attributes["im:id"])}
+      onClick={() => onClick(id)}
       sx={{
         height: "100%",
         width: "100%",
@@ -33,13 +35,13 @@ function PodcastCard({ data, onClick }: PodcastCardProps) {
             pt: "100%",
             borderRadius: 200,
           }}
-          image={data["im:image"][2].label}
+          image={image}
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5" component="h2">
-            {data["im:name"].label}
+            {title}
           </Typography>
-          <Typography>Author: {data["im:artist"].label}</Typography>
+          <Typography>Author: {author}</Typography>
         </CardContent>
       </Card>
     </ButtonBase>

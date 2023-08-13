@@ -14,7 +14,13 @@ function PodcastsList({ data, onClickPodcast }: PodcastsListProps) {
       <Grid container spacing={4}>
         {data?.map((podcast) => (
           <Grid item key={podcast.id.attributes["im:id"]} xs={6} sm={4} md={3}>
-            <PodcastCard data={podcast} onClick={onClickPodcast} />
+            <PodcastCard
+              id={podcast.id.attributes["im:id"]}
+              image={podcast["im:image"][2].label}
+              title={podcast["im:name"].label}
+              author={podcast["im:artist"].label}
+              onClick={onClickPodcast}
+            />
           </Grid>
         ))}
       </Grid>
