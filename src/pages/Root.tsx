@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Layout } from "../components/Layout";
-import usePodcasts from "../features/podcasts/podcastsHooks";
+import { useAppLoader } from "../app/hooks";
 
 function Root() {
-  const { isLoadingPodcasts } = usePodcasts();
+  const isLoading = useAppLoader();
 
   return (
-    <Layout isLoading={isLoadingPodcasts}>
+    <Layout isLoading={isLoading}>
       <Outlet />
     </Layout>
   );
