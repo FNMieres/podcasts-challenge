@@ -1,35 +1,35 @@
-export interface Contents {
+export interface TopPodcastsResponse {
   feed: Feed;
 }
 
-export interface Feed {
+interface Feed {
   author: Author;
   entry: Entry[];
-  updated: Icon;
-  rights: Icon;
-  title: Icon;
-  icon: Icon;
+  updated: Description;
+  rights: Description;
+  title: Description;
+  icon: Description;
   link: Link[];
-  id: Icon;
+  id: Description;
 }
 
-export interface Author {
-  name: Icon;
-  uri: Icon;
+interface Author {
+  name: Description;
+  uri: Description;
 }
 
-export interface Icon {
+interface Description {
   label: string;
 }
 
 export interface Entry {
-  "im:name": Icon;
+  "im:name": Description;
   "im:image": IMImage[];
-  summary: Icon;
+  summary: Description;
   "im:price": IMPrice;
   "im:contentType": IMContentType;
-  rights?: Icon;
-  title: Icon;
+  rights?: Description;
+  title: Description;
   link: Link;
   id: ID;
   "im:artist": IMArtist;
@@ -37,102 +37,102 @@ export interface Entry {
   "im:releaseDate": IMReleaseDate;
 }
 
-export interface Category {
+interface Category {
   attributes: CategoryAttributes;
 }
 
-export interface CategoryAttributes {
+interface CategoryAttributes {
   "im:id": string;
   term: PurpleLabel;
   scheme: string;
   label: PurpleLabel;
 }
 
-export enum PurpleLabel {
+enum PurpleLabel {
   Music = "Music",
   MusicCommentary = "Music Commentary",
   MusicHistory = "Music History",
   MusicInterviews = "Music Interviews",
 }
 
-export interface ID {
+interface ID {
   label: string;
   attributes: IDAttributes;
 }
 
-export interface IDAttributes {
+interface IDAttributes {
   "im:id": string;
 }
 
-export interface IMArtist {
+interface IMArtist {
   label: string;
   attributes?: IMArtistAttributes;
 }
 
-export interface IMArtistAttributes {
+interface IMArtistAttributes {
   href: string;
 }
 
-export interface IMContentType {
+interface IMContentType {
   attributes: IMContentTypeAttributes;
 }
 
-export interface IMContentTypeAttributes {
+interface IMContentTypeAttributes {
   term: FluffyLabel;
   label: FluffyLabel;
 }
 
-export enum FluffyLabel {
+enum FluffyLabel {
   Podcast = "Podcast",
 }
 
-export interface IMImage {
+interface IMImage {
   label: string;
   attributes: IMImageAttributes;
 }
 
-export interface IMImageAttributes {
+interface IMImageAttributes {
   height: string;
 }
 
-export interface IMPrice {
+interface IMPrice {
   label: IMPriceLabel;
   attributes: IMPriceAttributes;
 }
 
-export interface IMPriceAttributes {
+interface IMPriceAttributes {
   amount: string;
   currency: Currency;
 }
 
-export enum Currency {
+enum Currency {
   Usd = "USD",
 }
 
-export enum IMPriceLabel {
+enum IMPriceLabel {
   Get = "Get",
 }
 
-export interface IMReleaseDate {
+interface IMReleaseDate {
   label: Date;
-  attributes: Icon;
+  attributes: Description;
 }
 
-export interface Link {
+interface Link {
   attributes: LinkAttributes;
 }
 
-export interface LinkAttributes {
+interface LinkAttributes {
   rel: Rel;
   type?: Type;
   href: string;
 }
 
-export enum Rel {
+enum Rel {
   Alternate = "alternate",
   Self = "self",
 }
 
-export enum Type {
+enum Type {
   TextHTML = "text/html",
 }

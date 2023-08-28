@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import usePodcasts from "../features/podcasts/podcastsHooks";
+import { usePodcasts } from "../features/podcasts/podcastsHooks";
 import PodcastsList from "../features/podcasts/components/PodcastsList";
 import PodcastFilter from "../features/podcasts/components/PodcastFilter";
 

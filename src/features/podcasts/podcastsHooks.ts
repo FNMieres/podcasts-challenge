@@ -1,10 +1,14 @@
-import { useGetPodcastsQuery } from "./podcastsApi";
+import { useGetPodcastEpisodesQuery, useGetPodcastsQuery } from "./podcastsApi";
 
 interface UsePodcastsArgs {
   genre?: number;
   filterValue?: string;
 }
-const usePodcasts = ({ genre = 1310, filterValue }: UsePodcastsArgs = {}) => {
+
+export const usePodcasts = ({
+  genre = 1310,
+  filterValue,
+}: UsePodcastsArgs = {}) => {
   const { data: podcasts, isLoading } = useGetPodcastsQuery({ genre });
 
   const podcastsFiltered = filterValue
@@ -22,4 +26,14 @@ const usePodcasts = ({ genre = 1310, filterValue }: UsePodcastsArgs = {}) => {
   return { podcasts: podcastsFiltered, isLoadingPodcasts: isLoading };
 };
 
-export default usePodcasts;
+interface UsePodcastEpisodesArgs {
+  podcastId: string;
+}
+
+export const usePodcastEpisodes = ({ podcastId }: UsePodcastEpisodesArgs) => {
+  const { data: episodes, isLoading } = useGetPodcastEpisodesQuery({
+    id: podcastId,
+  });
+
+  return { episodes, isLoadingEpisodes: isLoading };
+};

@@ -1,24 +1,23 @@
-import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
-import PodcastsPage from "../pages/PodcastsPage";
+import { createBrowserRouter } from "react-router-dom";
 import Root from "../pages/Root";
+import PodcastsPage from "../pages/PodcastsPage";
+import PodcastPage from "../pages/PodcastPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Navigate to="podcasts" />
-        <Outlet />
-      </>
-    ),
+    element: <Root />,
     children: [
       {
         path: "podcasts",
-        element: <Root />,
         children: [
           {
             index: true,
             element: <PodcastsPage />,
+          },
+          {
+            path: ":podcastId",
+            element: <PodcastPage />,
           },
         ],
       },

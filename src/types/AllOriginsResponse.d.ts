@@ -1,9 +1,9 @@
-export interface ItunesResponse {
+export interface AllOriginsResponse {
   contents: string;
   status: Status;
 }
 
-export interface Status {
+interface Status {
   url: string;
   content_type: string;
   http_code: number;

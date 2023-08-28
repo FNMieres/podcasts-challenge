@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import PodcastCard from "./PodcastCard";
-import { Entry } from "../../../types/Contents";
+import { Entry } from "../../../types/TopPodcastsResponse";
 
 interface PodcastsListProps {
   data: Entry[] | undefined;

@@ -1,10 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { ItunesResponse } from "../../types/ItunesResponse";
-import type { Contents, Entry } from "../../types/Contents";
+import type { AllOriginsResponse } from "../../types/AllOriginsResponse";
+import type {
+  Entry,
+  TopPodcastsResponse,
+} from "../../types/TopPodcastsResponse";
+import type { LookupResponse, Result } from "../../types/LookupResponse";
 
 interface GetPodcastsArgs {
-  limit?: number;
   genre: number;
+  limit?: number;
+}
+
+interface GetPodcastEpisodesArgs {
+  id: string;
+  limit?: number;
 }
 
 export const podcastsApi = createApi({
@@ -21,12 +30,23 @@ export const podcastsApi = createApi({
           `us/rss/toppodcasts/limit=${limit}/genre=${genre}/json`,
         ),
       }),
-      transformResponse: (response: ItunesResponse) => {
-        const data: Contents = JSON.parse(response.contents);
+      transformResponse: (response: AllOriginsResponse) => {
+        const data: TopPodcastsResponse = JSON.parse(response.contents);
         return data.feed.entry;
+      },
+    }),
+    getPodcastEpisodes: build.query<Result[], GetPodcastEpisodesArgs>({
+      query: ({ id, limit = 20 }) => ({
+        url: encodeURIComponent(
+          `lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=${limit}`,
+        ),
+      }),
+      transformResponse: (response: AllOriginsResponse) => {
+        const data: LookupResponse = JSON.parse(response.contents);
+        return data.results;
       },
     }),
   }),
 });
 
-export const { useGetPodcastsQuery } = podcastsApi;
+export const { useGetPodcastsQuery, useGetPodcastEpisodesQuery } = podcastsApi;
