@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Root from "../pages/Root";
 import PodcastsPage from "../pages/PodcastsPage";
 import PodcastPage from "../pages/PodcastPage";
@@ -8,10 +8,14 @@ import EpisodePage from "../pages/EpisodePage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
     children: [
       {
+        index: true,
+        element: <Navigate to="/podcasts" />,
+      },
+      {
         path: "podcasts",
+        element: <Root />,
         children: [
           {
             index: true,
