@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
@@ -20,41 +19,37 @@ function PodcastFilter({
   };
 
   return (
-    <Container sx={{ pt: 4 }} maxWidth="lg">
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
       <Box
-        sx={{ float: "right", display: "flex", alignItems: "center", gap: 1 }}
+        component="span"
+        sx={{
+          bgcolor: "primary.main",
+          color: "primary.contrastText",
+          textAlign: "center",
+          width: 40,
+          height: 25,
+          borderRadius: 1,
+        }}
       >
-        <Box
-          component="span"
-          sx={{
-            bgcolor: "primary.main",
-            color: "primary.contrastText",
-            textAlign: "center",
-            width: 40,
-            height: 25,
-            borderRadius: 1,
-          }}
-        >
-          {podcastCount}
-        </Box>
-        <TextField
-          onSubmit={(event) => event.preventDefault()}
-          name="filter"
-          aria-label="Filter podcasts"
-          label="Filter podcasts..."
-          type="search"
-          variant="filled"
-          value={filterValue}
-          onChange={handleChange}
-          autoComplete="off"
-          role="search"
-          sx={{
-            m: 1,
-            width: "25ch",
-          }}
-        />
+        {podcastCount}
       </Box>
-    </Container>
+      <TextField
+        onSubmit={(event) => event.preventDefault()}
+        name="filter"
+        aria-label="Filter podcasts"
+        label="Filter podcasts..."
+        type="search"
+        variant="filled"
+        value={filterValue}
+        onChange={handleChange}
+        autoComplete="off"
+        role="search"
+        sx={{
+          m: 1,
+          width: "25ch",
+        }}
+      />
+    </Box>
   );
 }
 
