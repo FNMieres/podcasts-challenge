@@ -1,17 +1,12 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import {
-  usePodcastEpisodes,
-  usePodcasts,
-} from "../features/podcasts/podcastsHooks";
+import { usePodcasts } from "../features/podcasts/podcastsHooks";
 import PodcastDetail from "../features/podcasts/components/PodcastDetail";
-import EpisodesList from "../features/podcasts/components/EpisodesList";
 
 function PodcastPage() {
   const { podcastId } = useParams<{ podcastId: string }>();
   const { podcast } = usePodcasts({ podcastId });
-  const { episodes } = usePodcastEpisodes({ podcastId: podcastId! });
 
   return (
     <Container maxWidth="lg" sx={{ my: 6 }}>
@@ -26,7 +21,9 @@ function PodcastPage() {
             />
           )}
         </Grid>
-        {episodes && <EpisodesList data={episodes} />}
+        <Grid item xs={12} md={8} lg={9}>
+          <Outlet />
+        </Grid>
       </Grid>
     </Container>
   );

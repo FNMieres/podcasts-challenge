@@ -38,12 +38,19 @@ export const usePodcasts = ({
 
 interface UsePodcastEpisodesArgs {
   podcastId: string;
+  episodeId?: number;
 }
 
-export const usePodcastEpisodes = ({ podcastId }: UsePodcastEpisodesArgs) => {
+export const usePodcastEpisodes = ({
+  podcastId,
+  episodeId,
+}: UsePodcastEpisodesArgs) => {
   const { data: episodes, isLoading } = useGetPodcastEpisodesQuery({
     id: podcastId,
   });
 
-  return { episodes, isLoadingEpisodes: isLoading };
+  const episodeFound =
+    episodeId && episodes?.find((episode) => episode.trackId === episodeId);
+
+  return { episode: episodeFound, episodes, isLoadingEpisodes: isLoading };
 };

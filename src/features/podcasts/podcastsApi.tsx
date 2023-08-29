@@ -43,7 +43,12 @@ export const podcastsApi = createApi({
       }),
       transformResponse: (response: AllOriginsResponse) => {
         const data: LookupResponse = JSON.parse(response.contents);
-        return data.results;
+
+        const episodes = data.results.filter(
+          (result) => result.wrapperType === "podcastEpisode",
+        );
+
+        return episodes;
       },
     }),
   }),

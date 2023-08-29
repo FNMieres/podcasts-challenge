@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../pages/Root";
 import PodcastsPage from "../pages/PodcastsPage";
 import PodcastPage from "../pages/PodcastPage";
+import EpisodesPage from "../pages/EpisodesPage";
+import EpisodePage from "../pages/EpisodePage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,16 @@ const router = createBrowserRouter([
           {
             path: ":podcastId",
             element: <PodcastPage />,
+            children: [
+              {
+                index: true,
+                element: <EpisodesPage />,
+              },
+              {
+                path: "episodes/:episodeId",
+                element: <EpisodePage />,
+              },
+            ],
           },
         ],
       },
