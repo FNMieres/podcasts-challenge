@@ -1,11 +1,13 @@
 import { useGetPodcastEpisodesQuery, useGetPodcastsQuery } from "./podcastsApi";
 
 interface UsePodcastsArgs {
+  podcastId?: string;
   genre?: number;
   filterValue?: string;
 }
 
 export const usePodcasts = ({
+  podcastId,
   genre = 1310,
   filterValue,
 }: UsePodcastsArgs = {}) => {
@@ -23,7 +25,15 @@ export const usePodcasts = ({
       )
     : podcasts;
 
-  return { podcasts: podcastsFiltered, isLoadingPodcasts: isLoading };
+  const podcastFound =
+    podcastId &&
+    podcasts?.find((podcast) => podcast.id.attributes["im:id"] === podcastId);
+
+  return {
+    podcast: podcastFound,
+    podcasts: podcastsFiltered,
+    isLoadingPodcasts: isLoading,
+  };
 };
 
 interface UsePodcastEpisodesArgs {

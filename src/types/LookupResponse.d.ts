@@ -24,7 +24,7 @@ export interface Result {
   collectionPrice?: number;
   trackPrice?: number;
   collectionHdPrice?: number;
-  releaseDate: Date;
+  releaseDate: string;
   collectionExplicitness?: string;
   trackExplicitness?: string;
   trackCount?: number;
