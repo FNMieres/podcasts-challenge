@@ -25,26 +25,24 @@ function PodcastDetail({
         image={image}
       />
       <Divider variant="middle" />
-      <Box sx={{ px: 1 }}>
-        <Box sx={{ py: 2 }}>
-          <Typography variant="h5" component="h2" sx={{ fontWeight: "bold" }}>
-            {title}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ fontStyle: "italic" }}
-          >
-            by {author}
-          </Typography>
-        </Box>
-        <Divider variant="middle" />
-        <Box sx={{ py: 2 }}>
-          <Typography gutterBottom>Description:</Typography>
-          <Typography variant="body2" sx={{ fontStyle: "italic" }}>
-            {description}
-          </Typography>
-        </Box>
+      <Box sx={{ py: 2, px: 2 }}>
+        <Typography variant="h5" component="h2" sx={{ fontWeight: "bold" }}>
+          {title}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontStyle: "italic" }}
+        >
+          by {author}
+        </Typography>
+      </Box>
+      <Divider variant="middle" />
+      <Box sx={{ py: 2, px: 2 }}>
+        <Typography gutterBottom>Description:</Typography>
+        <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+          {description}
+        </Typography>
       </Box>
     </Card>
   );
