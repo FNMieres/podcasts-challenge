@@ -17,7 +17,7 @@ function EpisodesPage() {
             Episodes: {episodes.length}
           </Typography>
         </Paper>
-        <EpisodesList data={episodes} />;
+        <EpisodesList data={episodes} />
       </Grid>
     )
   );

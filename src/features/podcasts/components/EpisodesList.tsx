@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import { Link as RouterLink } from "react-router-dom";
 import { Result } from "../../../types/LookupResponse";
+import { getDuration } from "../../../utils";
 
 interface EpisodesListProps {
   data: Result[];
@@ -36,9 +37,11 @@ function EpisodesList({ data }: EpisodesListProps) {
                 </Link>
               </TableCell>
               <TableCell align="right">
-                {new Date(episode.releaseDate).toUTCString()}
+                {new Date(episode.releaseDate).toLocaleDateString("es-ES")}
               </TableCell>
-              <TableCell align="right">{episode.trackTimeMillis}</TableCell>
+              <TableCell align="right">
+                {getDuration(episode.trackTimeMillis)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
