@@ -41,6 +41,7 @@ export const podcastsApi = createApi({
           `lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=${limit}`,
         ),
       }),
+      keepUnusedDataFor: 1440,
       transformResponse: (response: AllOriginsResponse) => {
         const data: LookupResponse = JSON.parse(response.contents);
 
