@@ -1,3 +1,5 @@
+import { useCallback, useMemo } from "react";
+import { useNavigate } from "react-router";
 import { useGetPodcastEpisodesQuery, useGetPodcastsQuery } from "./podcastsApi";
 
 interface UsePodcastsArgs {
@@ -11,28 +13,40 @@ export const usePodcasts = ({
   genre = 1310,
   filterValue,
 }: UsePodcastsArgs = {}) => {
-  const { data: podcasts, isLoading } = useGetPodcastsQuery({ genre });
+  const { data: podcasts } = useGetPodcastsQuery({ genre });
+  const navigate = useNavigate();
 
-  const podcastsFiltered = filterValue
-    ? podcasts?.filter(
-        (podcast) =>
-          podcast["im:name"].label
-            .toLowerCase()
-            .includes(filterValue.toLowerCase()) ||
-          podcast["im:artist"].label
-            .toLowerCase()
-            .includes(filterValue.toLowerCase()),
-      )
-    : podcasts;
+  const podcastsFiltered = useMemo(
+    () =>
+      filterValue
+        ? podcasts?.filter(
+            (podcast) =>
+              podcast["im:name"].label
+                .toLowerCase()
+                .includes(filterValue.toLowerCase()) ||
+              podcast["im:artist"].label
+                .toLowerCase()
+                .includes(filterValue.toLowerCase()),
+          )
+        : podcasts,
+    [filterValue, podcasts],
+  );
 
-  const podcastFound =
-    podcastId &&
-    podcasts?.find((podcast) => podcast.id.attributes["im:id"] === podcastId);
+  const podcastFound = useMemo(
+    () =>
+      podcastId &&
+      podcasts?.find((podcast) => podcast.id.attributes["im:id"] === podcastId),
+    [podcastId, podcasts],
+  );
+
+  const navigateToPodcastById = useCallback((id: string) => {
+    navigate(`/podcasts/${id}`);
+  }, []);
 
   return {
     podcast: podcastFound,
     podcasts: podcastsFiltered,
-    isLoadingPodcasts: isLoading,
+    navigateToPodcastById,
   };
 };
 
@@ -49,8 +63,11 @@ export const usePodcastEpisodes = ({
     id: podcastId,
   });
 
-  const episodeFound =
-    episodeId && episodes?.find((episode) => episode.trackId === episodeId);
+  const episodeFound = useMemo(
+    () =>
+      episodeId && episodes?.find((episode) => episode.trackId === episodeId),
+    [episodeId, episodes],
+  );
 
   return { episode: episodeFound, episodes, isLoadingEpisodes: isLoading };
 };
