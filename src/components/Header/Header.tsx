@@ -14,7 +14,12 @@ function Header({ isLoading = false }: HeaderProps) {
   return (
     <AppBar position="relative">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Link component={RouterLink} to="/podcasts" sx={{ display: "flex" }}>
+        <Link
+          component={RouterLink}
+          to="/podcasts"
+          sx={{ display: "flex" }}
+          underline="none"
+        >
           <PodcastsIcon sx={{ mr: 1 }} />
           <Typography
             variant="h6"
