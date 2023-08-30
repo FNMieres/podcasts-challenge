@@ -14,6 +14,7 @@ function PodcastPage() {
         <Grid item xs={12} md={4} lg={3}>
           {podcast && (
             <PodcastDetail
+              id={podcast.id.attributes["im:id"]}
               image={podcast["im:image"][2].label}
               title={podcast["im:name"].label}
               author={podcast["im:artist"].label}

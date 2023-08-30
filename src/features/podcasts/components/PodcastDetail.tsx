@@ -3,8 +3,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import { Link as RouterLink } from "react-router-dom";
 
 interface PodcastDetailProps {
+  id: string;
   image: string;
   title: string;
   author: string;
@@ -12,6 +15,7 @@ interface PodcastDetailProps {
 }
 
 function PodcastDetail({
+  id,
   image,
   title,
   author,
@@ -19,13 +23,21 @@ function PodcastDetail({
 }: PodcastDetailProps) {
   return (
     <Card sx={{ display: "flex", flexDirection: "column" }}>
-      <CardMedia
-        component="img"
-        sx={{ width: "100%", display: { xs: "none", sm: "block" }, p: 4 }}
-        image={image}
-      />
+      <Link component={RouterLink} to={`/podcasts/${id}`}>
+        <CardMedia
+          component="img"
+          sx={{ width: "100%", display: { xs: "none", sm: "block" }, p: 4 }}
+          image={image}
+        />
+      </Link>
       <Divider variant="middle" />
-      <Box sx={{ py: 2, px: 2 }}>
+      <Link
+        component={RouterLink}
+        to={`/podcasts/${id}`}
+        sx={{ py: 2, px: 2 }}
+        underline="none"
+        color="inherit"
+      >
         <Typography variant="h5" component="h2" sx={{ fontWeight: "bold" }}>
           {title}
         </Typography>
@@ -36,7 +48,7 @@ function PodcastDetail({
         >
           by {author}
         </Typography>
-      </Box>
+      </Link>
       <Divider variant="middle" />
       <Box sx={{ py: 2, px: 2 }}>
         <Typography gutterBottom>Description:</Typography>
