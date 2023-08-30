@@ -1,9 +1,11 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Root from "../pages/Root";
-import PodcastsPage from "../pages/PodcastsPage";
-import PodcastPage from "../pages/PodcastPage";
-import EpisodesPage from "../pages/EpisodesPage";
-import EpisodePage from "../pages/EpisodePage";
+
+const LazyRoot = lazy(() => import("../pages/Root"));
+const LazyPodcastsPage = lazy(() => import("../pages/PodcastsPage"));
+const LazyPodcastPage = lazy(() => import("../pages/PodcastPage"));
+const LazyEpisodesPage = lazy(() => import("../pages/EpisodesPage"));
+const LazyEpisodePage = lazy(() => import("../pages/EpisodePage"));
 
 const router = createBrowserRouter([
   {
@@ -15,23 +17,43 @@ const router = createBrowserRouter([
       },
       {
         path: "podcasts",
-        element: <Root />,
+        element: (
+          <Suspense>
+            <LazyRoot />
+          </Suspense>
+        ),
         children: [
           {
             index: true,
-            element: <PodcastsPage />,
+            element: (
+              <Suspense>
+                <LazyPodcastsPage />
+              </Suspense>
+            ),
           },
           {
             path: ":podcastId",
-            element: <PodcastPage />,
+            element: (
+              <Suspense>
+                <LazyPodcastPage />
+              </Suspense>
+            ),
             children: [
               {
                 index: true,
-                element: <EpisodesPage />,
+                element: (
+                  <Suspense>
+                    <LazyEpisodesPage />
+                  </Suspense>
+                ),
               },
               {
                 path: "episodes/:episodeId",
-                element: <EpisodePage />,
+                element: (
+                  <Suspense>
+                    <LazyEpisodePage />
+                  </Suspense>
+                ),
               },
             ],
           },
