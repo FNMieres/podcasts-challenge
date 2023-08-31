@@ -23,10 +23,10 @@ function PodcastDetail({
 }: PodcastDetailProps) {
   return (
     <Card sx={{ display: "flex", flexDirection: "column" }}>
-      <Link component={RouterLink} to={`/podcasts/${id}`}>
+      <Link component={RouterLink} to={`/podcasts/${id}`} sx={{ m: 4 }}>
         <CardMedia
           component="img"
-          sx={{ width: "100%", display: { xs: "none", sm: "block" }, p: 4 }}
+          sx={{ width: "100%", display: { xs: "none", sm: "block" } }}
           image={image}
         />
       </Link>
@@ -34,7 +34,7 @@ function PodcastDetail({
       <Link
         component={RouterLink}
         to={`/podcasts/${id}`}
-        sx={{ py: 2, px: 2 }}
+        sx={{ my: 2, mx: 2 }}
         underline="none"
         color="inherit"
       >
@@ -50,7 +50,7 @@ function PodcastDetail({
         </Typography>
       </Link>
       <Divider variant="middle" />
-      <Box sx={{ py: 2, px: 2 }}>
+      <Box sx={{ my: 2, mx: 2 }}>
         <Typography gutterBottom>Description:</Typography>
         <Typography variant="body2" sx={{ fontStyle: "italic" }}>
           {description}
