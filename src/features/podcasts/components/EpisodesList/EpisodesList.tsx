@@ -7,8 +7,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import { Link as RouterLink } from "react-router-dom";
-import { Result } from "../../../types/LookupResponse";
-import { getDuration } from "../../../utils";
+import { Result } from "../../../../types/LookupResponse";
+import { getDuration } from "../../../../utils/timeUtils";
 
 interface EpisodesListProps {
   data: Result[];

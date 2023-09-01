@@ -114,7 +114,7 @@ enum IMPriceLabel {
 }
 
 interface IMReleaseDate {
-  label: Date;
+  label: string;
   attributes: Description;
 }
 

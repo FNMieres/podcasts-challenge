@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
-import PodcastCard from "./PodcastCard";
-import { Entry } from "../../../types/TopPodcastsResponse";
+import PodcastCard from "../PodcastCard";
+import { Entry } from "../../../../types/TopPodcastsResponse";
 
 interface PodcastsListProps {
   data: Entry[] | undefined;

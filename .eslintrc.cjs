@@ -22,5 +22,6 @@ module.exports = {
     "import/no-absolute-path": "off",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
+    "no-restricted-exports": "off",
   },
 };

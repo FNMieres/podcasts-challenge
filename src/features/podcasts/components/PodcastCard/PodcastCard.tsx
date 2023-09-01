@@ -30,12 +30,12 @@ function PodcastCard({ id, image, title, author, onClick }: PodcastCardProps) {
         }}
       >
         <CardMedia
-          component="div"
+          component="img"
           sx={{
-            pt: "100%",
             borderRadius: 200,
           }}
           image={image}
+          alt={`Podcast cover for ${title}`}
         />
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5" component="h2">

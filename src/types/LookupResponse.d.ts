@@ -4,16 +4,16 @@ export interface LookupResponse {
 }
 
 export interface Result {
-  wrapperType: WrapperType;
-  kind: Kind;
+  wrapperType: string;
+  kind: string;
   artistId?: number;
   collectionId: number;
   trackId: number;
   artistName?: string;
-  collectionName: Name;
+  collectionName: string;
   trackName: string;
-  collectionCensoredName?: Name;
-  trackCensoredName?: Name;
+  collectionCensoredName?: string;
+  trackCensoredName?: string;
   artistViewUrl: string;
   collectionViewUrl: string;
   feedUrl: string;
@@ -29,65 +29,21 @@ export interface Result {
   trackExplicitness?: string;
   trackCount?: number;
   trackTimeMillis: number;
-  country: Country;
+  country: string;
   currency?: string;
-  primaryGenreName?: PrimaryGenreNameEnum;
-  contentAdvisoryRating: ContentAdvisoryRating;
+  primaryGenreName?: string;
+  contentAdvisoryRating: string;
   artworkUrl600: string;
   genreIds?: string[];
   genres: Array<GenreClass | string>;
   artistIds?: number[];
-  episodeFileExtension?: EpisodeFileExtension;
-  closedCaptioning?: ClosedCaptioning;
+  episodeFileExtension?: string;
+  closedCaptioning?: string;
   episodeGuid?: string;
   artworkUrl160?: string;
   description?: string;
-  episodeContentType?: EpisodeContentType;
+  episodeContentType?: string;
   shortDescription?: string;
   previewUrl?: string;
   episodeUrl?: string;
-}
-
-export enum ClosedCaptioning {
-  None = "none",
-}
-
-export enum Name {
-  TheJoeBuddenPodcast = "The Joe Budden Podcast",
-}
-
-export enum ContentAdvisoryRating {
-  Clean = "Clean",
-  Explicit = "Explicit",
-}
-
-export enum Country {
-  Usa = "USA",
-}
-
-export enum EpisodeContentType {
-  Audio = "audio",
-}
-
-export enum EpisodeFileExtension {
-  Mp3 = "mp3",
-}
-
-export interface GenreClass {
-  name: PrimaryGenreNameEnum;
-  id: string;
-}
-
-export enum PrimaryGenreNameEnum {
-  Music = "Music",
-}
-
-export enum Kind {
-  Podcast = "podcast",
-  PodcastEpisode = "podcast-episode",
-}
-
-export enum WrapperType {
-  PodcastEpisode = "podcastEpisode",
-  Track = "track",
 }
