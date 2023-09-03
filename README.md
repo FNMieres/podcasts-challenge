@@ -1,4 +1,4 @@
-# Podcast Challenge
+# Podcasts Challenge
 
 This is a small front-end application that allows you to explore and listen to musical podcasts. It provides a user-friendly interface to discover and enjoy podcasts conveniently.
 
@@ -13,8 +13,8 @@ To run the application in development mode, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/FNMieres/podcast-challenge.git
-   cd podcast-challenge
+   git clone https://github.com/FNMieres/podcasts-challenge.git
+   cd podcasts-challenge
    ```
 
 2. Install the required dependencies for the frontend:
