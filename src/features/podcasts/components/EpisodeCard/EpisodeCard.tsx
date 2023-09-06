@@ -23,7 +23,10 @@ function EpisodeCard({
         <Typography gutterBottom variant="h4" component="h1">
           {title}
         </Typography>
-        <Typography gutterBottom>{description}</Typography>
+        <Typography
+          gutterBottom
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </Box>
       <Divider variant="middle" />
       <Box sx={{ p: 2 }}>
