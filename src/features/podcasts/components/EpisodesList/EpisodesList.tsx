@@ -5,10 +5,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Link from "@mui/material/Link";
-import { Link as RouterLink } from "react-router-dom";
 import { Result } from "../../../../types/LookupResponse";
 import { getDuration } from "../../../../utils/timeUtils";
+import RouterLink from "../../../../components/RouterLink/RouterLink";
 
 interface EpisodesListProps {
   data: Result[];
@@ -32,9 +31,9 @@ function EpisodesList({ data }: EpisodesListProps) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <Link component={RouterLink} to={`episodes/${episode.trackId}`}>
+                <RouterLink to={`episodes/${episode.trackId}`}>
                   {episode.trackName}
-                </Link>
+                </RouterLink>
               </TableCell>
               <TableCell align="right">
                 {new Date(episode.releaseDate).toLocaleDateString("es-ES")}

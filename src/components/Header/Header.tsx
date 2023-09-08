@@ -2,9 +2,8 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import PodcastsIcon from "@mui/icons-material/Podcasts";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Link as RouterLink } from "react-router-dom";
+import RouterLink from "../RouterLink/RouterLink";
 
 interface HeaderProps {
   isLoading?: boolean;
@@ -14,12 +13,7 @@ function Header({ isLoading = false }: HeaderProps) {
   return (
     <AppBar position="relative">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Link
-          component={RouterLink}
-          to="/podcasts"
-          sx={{ display: "flex" }}
-          underline="none"
-        >
+        <RouterLink to="/podcasts" sx={{ display: "flex" }} underline="none">
           <PodcastsIcon sx={{ mr: 1 }} />
           <Typography
             variant="h6"
@@ -36,7 +30,7 @@ function Header({ isLoading = false }: HeaderProps) {
           >
             Podcaster
           </Typography>
-        </Link>
+        </RouterLink>
         {isLoading && <CircularProgress />}
       </Toolbar>
     </AppBar>

@@ -3,8 +3,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import { Link as RouterLink } from "react-router-dom";
+import RouterLink from "../../../../components/RouterLink/RouterLink";
 
 interface PodcastDetailProps {
   id: string;
@@ -23,16 +22,15 @@ function PodcastDetail({
 }: PodcastDetailProps) {
   return (
     <Card sx={{ display: "flex", flexDirection: "column" }}>
-      <Link component={RouterLink} to={`/podcasts/${id}`} sx={{ m: 4 }}>
+      <RouterLink to={`/podcasts/${id}`} sx={{ m: 4 }}>
         <CardMedia
           component="img"
           sx={{ width: "100%", display: { xs: "none", sm: "block" } }}
           image={image}
         />
-      </Link>
+      </RouterLink>
       <Divider variant="middle" />
-      <Link
-        component={RouterLink}
+      <RouterLink
         to={`/podcasts/${id}`}
         sx={{ my: 2, mx: 2 }}
         underline="none"
@@ -48,7 +46,7 @@ function PodcastDetail({
         >
           by {author}
         </Typography>
-      </Link>
+      </RouterLink>
       <Divider variant="middle" />
       <Box sx={{ my: 2, mx: 2 }}>
         <Typography gutterBottom>Description:</Typography>
