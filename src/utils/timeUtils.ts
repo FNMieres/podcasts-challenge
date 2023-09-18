@@ -10,3 +10,11 @@ export const getDuration = (milliseconds: number) => {
     ? `${hours}:${minutesStr}:${secondsStr}`
     : `${minutesStr}:${secondsStr}`;
 };
+
+export const daysToMilliseconds = (days: number) => {
+  return days * 24 * 60 * 60 * 1000;
+};
+
+export const daysToSeconds = (days: number) => {
+  return days * 24 * 60 * 60;
+};

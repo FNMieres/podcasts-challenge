@@ -1,14 +1,37 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 import { podcastsApi } from "../features/podcasts/podcastsApi";
+import rootReducer from "./reducers";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    [podcastsApi.reducerPath]: podcastsApi.reducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(podcastsApi.middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(podcastsApi.middleware),
 });
+
+export const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
 

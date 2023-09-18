@@ -1,6 +1,7 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useGetPodcastEpisodesQuery, useGetPodcastsQuery } from "./podcastsApi";
+import { daysToMilliseconds } from "../../utils/timeUtils";
 
 interface UsePodcastsArgs {
   podcastId?: string;
@@ -59,9 +60,23 @@ export const usePodcastEpisodes = ({
   podcastId,
   episodeId,
 }: UsePodcastEpisodesArgs) => {
-  const { data: episodes, isLoading } = useGetPodcastEpisodesQuery({
+  const {
+    data: episodes,
+    isLoading,
+    refetch,
+    fulfilledTimeStamp,
+  } = useGetPodcastEpisodesQuery({
     id: podcastId,
   });
+
+  useEffect(() => {
+    if (
+      fulfilledTimeStamp &&
+      Date.now() - fulfilledTimeStamp > daysToMilliseconds(1)
+    ) {
+      refetch();
+    }
+  }, [fulfilledTimeStamp]);
 
   const episodeFound = useMemo(
     () =>

@@ -66,7 +66,7 @@ Please note that in production mode, the assets are minimized and concatenated f
 
 ## Technologies Used
 
-I created the project with Vite, utilizing React and TypeScript, and integrated key libraries including React Router DOM, Redux Toolkit, Material UI, Vitest, Testing Library, ESLint, and Prettier for enhanced development and testing capabilities.
+I created the project with Vite, utilizing React and TypeScript, and integrated key libraries including React Router DOM, Redux Toolkit, Redux-Persist, Material UI, Vitest, Testing Library, ESLint, and Prettier for enhanced development and testing capabilities.
 
 ## Challenge Details
 

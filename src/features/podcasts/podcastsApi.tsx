@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { REHYDRATE } from "redux-persist";
 import type { AllOriginsResponse } from "../../types/AllOriginsResponse";
 import type {
   Entry,
   TopPodcastsResponse,
 } from "../../types/TopPodcastsResponse";
 import type { LookupResponse, Result } from "../../types/LookupResponse";
+import { daysToSeconds } from "../../utils/timeUtils";
 
 interface GetPodcastsArgs {
   genre: number;
@@ -22,7 +24,14 @@ export const podcastsApi = createApi({
     baseUrl: `https://api.allorigins.win/get?url=${encodeURIComponent(
       "https://itunes.apple.com/",
     )}`,
+    cache: "no-cache",
   }),
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === REHYDRATE && action.payload) {
+      return action.payload[reducerPath];
+    }
+    return undefined;
+  },
   endpoints: (build) => ({
     getPodcasts: build.query<Entry[], GetPodcastsArgs>({
       query: ({ limit = 100, genre }) => ({
@@ -41,7 +50,7 @@ export const podcastsApi = createApi({
           `lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=${limit}`,
         ),
       }),
-      keepUnusedDataFor: 1440,
+      keepUnusedDataFor: daysToSeconds(1),
       transformResponse: (response: AllOriginsResponse) => {
         const data: LookupResponse = JSON.parse(response.contents);
 
