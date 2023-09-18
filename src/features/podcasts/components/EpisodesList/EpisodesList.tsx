@@ -6,8 +6,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Result } from "../../../../types/LookupResponse";
-import { getDuration } from "../../../../utils/timeUtils";
+import { millisecondsToDuration } from "../../../../utils/timeUtils";
 import RouterLink from "../../../../components/RouterLink/RouterLink";
+import { EPISODES_PATH } from "../../../../constants";
 
 interface EpisodesListProps {
   data: Result[];
@@ -31,7 +32,7 @@ function EpisodesList({ data }: EpisodesListProps) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <RouterLink to={`episodes/${episode.trackId}`}>
+                <RouterLink to={`${EPISODES_PATH}/${episode.trackId}`}>
                   {episode.trackName}
                 </RouterLink>
               </TableCell>
@@ -39,7 +40,7 @@ function EpisodesList({ data }: EpisodesListProps) {
                 {new Date(episode.releaseDate).toLocaleDateString("es-ES")}
               </TableCell>
               <TableCell align="right">
-                {getDuration(episode.trackTimeMillis)}
+                {millisecondsToDuration(episode.trackTimeMillis)}
               </TableCell>
             </TableRow>
           ))}

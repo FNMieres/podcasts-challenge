@@ -1,6 +1,6 @@
 import { episodes } from "../../../../test/mockData/Episodes";
 import { render, screen } from "../../../../utils/testUtils";
-import { getDuration } from "../../../../utils/timeUtils";
+import { millisecondsToDuration } from "../../../../utils/timeUtils";
 import EpisodesList from "./EpisodesList";
 
 describe("EpisodesList", () => {
@@ -19,7 +19,7 @@ describe("EpisodesList", () => {
         new Date(episode.releaseDate).toLocaleDateString("es-ES"),
       );
       const trackTimeMillisElement = screen.getByText(
-        getDuration(episode.trackTimeMillis),
+        millisecondsToDuration(episode.trackTimeMillis),
       );
 
       expect(trackNameElement).toBeInTheDocument();

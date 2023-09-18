@@ -6,7 +6,8 @@ import type {
   TopPodcastsResponse,
 } from "../../types/TopPodcastsResponse";
 import type { LookupResponse, Result } from "../../types/LookupResponse";
-import { daysToSeconds } from "../../utils/timeUtils";
+import { millisecondsToSeconds } from "../../utils/timeUtils";
+import { CACHE_EXPIRATION_TIME } from "../../constants";
 
 interface GetPodcastsArgs {
   genre: number;
@@ -50,7 +51,7 @@ export const podcastsApi = createApi({
           `lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=${limit}`,
         ),
       }),
-      keepUnusedDataFor: daysToSeconds(1),
+      keepUnusedDataFor: millisecondsToSeconds(CACHE_EXPIRATION_TIME),
       transformResponse: (response: AllOriginsResponse) => {
         const data: LookupResponse = JSON.parse(response.contents);
 

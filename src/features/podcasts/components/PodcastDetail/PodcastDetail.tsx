@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import RouterLink from "../../../../components/RouterLink/RouterLink";
+import { PODCASTS_PATH } from "../../../../constants";
 
 interface PodcastDetailProps {
   id: string;
@@ -22,7 +23,7 @@ function PodcastDetail({
 }: PodcastDetailProps) {
   return (
     <Card sx={{ display: "flex", flexDirection: "column" }}>
-      <RouterLink to={`/podcasts/${id}`} sx={{ m: 4 }}>
+      <RouterLink to={`/${PODCASTS_PATH}/${id}`} sx={{ m: 4 }}>
         <CardMedia
           component="img"
           sx={{ width: "100%", display: { xs: "none", sm: "block" } }}
@@ -31,7 +32,7 @@ function PodcastDetail({
       </RouterLink>
       <Divider variant="middle" />
       <RouterLink
-        to={`/podcasts/${id}`}
+        to={`/${PODCASTS_PATH}/${id}`}
         sx={{ my: 2, mx: 2 }}
         underline="none"
         color="inherit"

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useGetPodcastEpisodesQuery, useGetPodcastsQuery } from "./podcastsApi";
-import { daysToMilliseconds } from "../../utils/timeUtils";
+import { CACHE_EXPIRATION_TIME } from "../../constants";
 
 interface UsePodcastsArgs {
   podcastId?: string;
@@ -72,7 +72,7 @@ export const usePodcastEpisodes = ({
   useEffect(() => {
     if (
       fulfilledTimeStamp &&
-      Date.now() - fulfilledTimeStamp > daysToMilliseconds(1)
+      Date.now() - fulfilledTimeStamp > CACHE_EXPIRATION_TIME
     ) {
       refetch();
     }

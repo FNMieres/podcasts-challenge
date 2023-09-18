@@ -1,5 +1,12 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import {
+  EPISODES_PATH,
+  EPISODE_ID_PATH_PARAM,
+  HOME_PATH,
+  PODCASTS_PATH,
+  PODCAST_ID_PATH_PARAM,
+} from "../constants";
 
 const LazyRoot = lazy(() => import("../pages/Root"));
 const LazyPodcastsPage = lazy(() => import("../pages/PodcastsPage"));
@@ -9,14 +16,14 @@ const LazyEpisodePage = lazy(() => import("../pages/EpisodePage"));
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: HOME_PATH,
     children: [
       {
         index: true,
-        element: <Navigate to="/podcasts" />,
+        element: <Navigate to={PODCASTS_PATH} />,
       },
       {
-        path: "podcasts",
+        path: PODCASTS_PATH,
         element: (
           <Suspense>
             <LazyRoot />
@@ -32,7 +39,7 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: ":podcastId",
+            path: PODCAST_ID_PATH_PARAM,
             element: (
               <Suspense>
                 <LazyPodcastPage />
@@ -48,7 +55,7 @@ const router = createBrowserRouter([
                 ),
               },
               {
-                path: "episodes/:episodeId",
+                path: `${EPISODES_PATH}/${EPISODE_ID_PATH_PARAM}`,
                 element: (
                   <Suspense>
                     <LazyEpisodePage />
